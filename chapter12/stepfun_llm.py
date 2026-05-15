@@ -27,7 +27,7 @@ class StepfunLLM(HelloAgentsLLM):
         # 强制使用 stepfun 配置
         api_key = api_key or os.getenv("STEPFUN_API_KEY") or os.getenv("STEP_API_KEY") or os.getenv("LLM_API_KEY")
         base_url = base_url or os.getenv("LLM_BASE_URL") or "https://api.stepfun.com/v1"
-        model = model or os.getenv("LLM_MODEL_ID") or "step-2-16k"
+        model = model or os.getenv("LLM_MODEL_ID") or "step-3.5-flash"
 
         super().__init__(
             model=model,

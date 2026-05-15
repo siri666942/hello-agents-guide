@@ -23,29 +23,39 @@ pip install hello-agents  # 或从源码安装
 pip install python-dotenv openai
 ```
 
-### 3. 配置 API Key
+### 3. 配置 LLM API
 
-在 `/tmp/hello-agents/.env` 中写入：
+在 `/tmp/hello-agents/.env` 中写入你的 API 配置：
 
 ```env
-LLM_API_KEY=你的_stepfun_key
+# 示例：使用 stepfun（阶跃星辰）
+LLM_API_KEY=你的_api_key
 LLM_BASE_URL=https://api.stepfun.com/v1
-LLM_MODEL_ID=step-1-8k
+LLM_MODEL_ID=step-3.5-flash
+
+# 你也可以换其他 OpenAI-compatible 提供商：
+# LLM_BASE_URL=https://api.openai.com/v1
+# LLM_MODEL_ID=gpt-4o-mini
+# LLM_BASE_URL=https://api.deepseek.com/v1
+# LLM_MODEL_ID=deepseek-chat
 ```
 
 **注意：**
+- 本教程示例使用 stepfun，但**代码不绑定任何特定提供商**
+- 只要 API 兼容 OpenAI 格式，换 `LLM_BASE_URL` 和 `LLM_MODEL_ID` 即可
 - stepfun V0 等级 RPM 限制约 10/min，调用需间隔 ≥ 6 秒
 - stepfun 流式 tool calling 不稳定，**必须关闭流式模式**
-- step-1-8k 不支持 tool calls，step-2-16k / step-2-mini 支持
 
 ### 4. 核心适配文件
 
-本指南使用 `StepfunLLM` 适配器替代原教程的 `HelloAgentsLLM()`，原因：
+本指南提供 `StepfunLLM` 适配器（示例），特性：
 - 强制非流式调用
-- 内置 6 秒 RPM 限流保护
+- 内置 RPM 限流保护
 - 自动读取 `.env` 配置
 
 适配器位置：`code/chapter7/stepfun_llm.py`（后续章节已复制到各自目录）
+
+**使用其他提供商时**：直接调用 `HelloAgentsLLM()` 即可，或参考 `StepfunLLM` 写自己的适配器。
 
 ---
 

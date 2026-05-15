@@ -40,7 +40,7 @@ python test_plan_solve_agent.py
 
 ### StepfunLLM
 
-本章及后续章节统一使用 `StepfunLLM` 替代原教程的 `HelloAgentsLLM()`：
+本章及后续章节使用 `StepfunLLM` 作为示例适配器（替换原教程的 `HelloAgentsLLM()`）：
 
 ```python
 from stepfun_llm import StepfunLLM
@@ -49,8 +49,10 @@ llm = StepfunLLM()
 
 特性：
 - 强制非流式调用（`stream=False`）
-- 6 秒 RPM 限流保护（stepfun V0 等级 10/min）
+- 6 秒 RPM 限流保护
 - 自动读取 `.env` 中的 `LLM_API_KEY` / `LLM_BASE_URL` / `LLM_MODEL_ID`
+
+**使用其他提供商时**：直接调用 `HelloAgentsLLM()`，或参考 `StepfunLLM` 写自己的适配器。
 
 ### CalculatorTool
 
